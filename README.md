@@ -16,3 +16,32 @@
 ```
 go get github.com/libgox/must
 ```
+
+## 💡 Usage
+
+Must package provides a set of utility functions that simplify error handling when dealing with functions that returns both a value and an error.
+These functions will panic if the error is not `nil`, otherwise, they return the provided value(s).
+
+The `Must` function returns the value when no error is encountered. If an error is encountered, it panics with the provided error.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/libgox/must"
+	"os"
+)
+
+func main() {
+	file, err := os.Open("file.txt")
+	// Will panic if error is not nil
+	must.Must(file, err)
+	defer file.Close()
+
+	// Proceed with file operations
+}
+
+```
+
+`Must2` and `Must3` are variant for different number of return values
