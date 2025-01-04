@@ -1,6 +1,6 @@
 package must
 
-func Nil(err error) {
+func NoError(err error) {
 	if err != nil {
 		panic(err)
 	}
