@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNil(t *testing.T) {
+func TestNoError(t *testing.T) {
 	tests := []struct {
 		name    string
 		err     error
@@ -28,11 +28,11 @@ func TestNil(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if tt.wantErr {
 				assert.Panics(t, func() {
-					Nil(tt.err)
+					NoError(tt.err)
 				}, "expected panic, but did not panic")
 			} else {
 				assert.NotPanics(t, func() {
-					Nil(tt.err)
+					NoError(tt.err)
 				}, "expected no panic, but panicked")
 			}
 		})
