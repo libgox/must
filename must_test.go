@@ -7,6 +7,38 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestNil(t *testing.T) {
+	tests := []struct {
+		name    string
+		err     error
+		wantErr bool
+	}{
+		{
+			name:    "NoError",
+			err:     nil,
+			wantErr: false,
+		},
+		{
+			name:    "Error",
+			err:     errors.New("error"),
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if tt.wantErr {
+				assert.Panics(t, func() {
+					Nil(tt.err)
+				}, "expected panic, but did not panic")
+			} else {
+				assert.NotPanics(t, func() {
+					Nil(tt.err)
+				}, "expected no panic, but panicked")
+			}
+		})
+	}
+}
+
 func TestMust(t *testing.T) {
 	tests := []struct {
 		name    string
