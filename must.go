@@ -1,5 +1,11 @@
 package must
 
+func Nil(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+
 func Must[A any](a A, err error) A {
 	if err != nil {
 		panic(err)
